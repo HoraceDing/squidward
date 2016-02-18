@@ -8,3 +8,6 @@ def index(request):
     
 def say_whatsup(request):
     return HttpResponse("Hello, WHAT IS UP?")
+    
+def swag(request):
+    return HttpResponse("Swag beans")
