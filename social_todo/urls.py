@@ -20,7 +20,8 @@ from . import views
 
 urlpatterns = [
     url(r'^', include('splash.urls')),
-    url(r'^tasks/', include('tasks.urls')),
+    url(r'^task/', include('tasks.urls')),
+    url(r'^user/', include('users.urls')),
     url(r'^admin/', admin.site.urls)
 ]
 
