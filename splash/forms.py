@@ -11,7 +11,7 @@ class RegisterForm(forms.Form):
     password_confirmation = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'confirm password', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'confirm password'"}), label='')
     
     
-class NewTaskForm(forms.Form):
+class newTaskForm(forms.Form):
     title = forms.CharField(max_length=500, label='task info', widget=forms.TextInput(attrs={'placeholder': 'task title', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'task title'"}))
     description = forms.CharField(max_length=5000, label='', widget=forms.TextInput(attrs={'placeholder': 'description', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'description'"}))
     collaborator1 = forms.CharField(max_length=100, required=False, label='collaborators', widget=forms.TextInput(attrs={'placeholder': 'email', 'onfocus': "this.placeholder = ''", 'onblur': "this.placeholder = 'email'"}))

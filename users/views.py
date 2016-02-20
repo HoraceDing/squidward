@@ -5,8 +5,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from splash.forms import RegisterForm, loginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
-from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import login as poop_login
+from django.contrib.auth import logout as poop_logout
 # Create your views here.
 
 def login(request):
@@ -16,7 +16,7 @@ def login(request):
         user = authenticate(username=email, password=password)
         if user is not None:
             if user.is_active:
-                auth_login(request, user)
+                poop_login(request, user)
                 return HttpResponseRedirect('/')
             else:
                 return HttpResponse("Error")
@@ -54,7 +54,7 @@ def register(request):
                 else:
                     user = User.objects.create_user(data['email'], '', data['password'], first_name=data['fl_name'])
                     user = authenticate(username=data['email'], password=data['password'])
-                    auth_login(request, user)
+                    poop_login(request, user)
                     return HttpResponseRedirect('/')
             else:
                 registrationForm = RegisterForm()

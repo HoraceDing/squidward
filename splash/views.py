@@ -1,17 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from .forms import newTaskForm
+from django.contrib.auth.models import User
+from tasks.models import Task
+from django.db.models import Q
 
 from .forms import loginForm
 from .forms import RegisterForm
 
 # Create your views here.
 def index(request):
-    # if request.user.is_authenticated():
-    #     logger.error('Something went right!')
-    #     return render(request, 'splash/index.html', {'user': request.user, 'new_task': newTaskForm, 'tasks': tasks})
-    # else:
+    if request.user.is_authenticated():
+        return render(request, 'index.html', {'user': request.user, 'new_task': newTaskForm})
+    else:
         registerForm = RegisterForm()
         loginform = loginForm()
         return render(request, 'index.html', {'login': loginform, 'register': RegisterForm})
