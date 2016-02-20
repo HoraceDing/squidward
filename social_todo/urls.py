@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^task/', include('tasks.urls')),
     url(r'^user/', include('users.urls')),
     url(r'^admin/', admin.site.urls)
+    
 ]
 

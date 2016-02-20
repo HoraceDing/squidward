@@ -37,7 +37,17 @@
 {% else %}
 
 <h1>Welcome, {{request.user.first_name}}</h1>
-  <button id="new-task-button">add task</button
+
+  <div id="new-task-form">
+    <form action="/task/create" method="POST" class="create-task">
+      {% csrf_token %}
+      <h2>new task </h2>
+      {{new_task}}
+      <button type="submit" class="create-task-submit">add task &#123404;</button>
+    </form>
+  </div>
+
+
   <a href='/user/logout' class='logout'>Logout</a>
 
   <div>
@@ -57,19 +67,19 @@
           <h3><span class="task-description"><i>{{task.description}}</i></span></h3>
           <form action='/task/toggle/{{task.id}}' method="POST">
             {% csrf_token %}
-            <button type="submit" name="toggle-task" class="toggle-task">complete &#10003;</button>
+            <button type="submit" name="toggle-task" class="toggle-task">complete &#12938;</button>
           </form>
         {% endif %}
             {% if task.owner == user %}
               <form action='/task/delete/{{task.id}}' method="POST">
                 {% csrf_token %}
-                <button type="submit" name="delete-task" class="delete-task">delete &#10005;</button>
+                <button type="submit" name="delete-task" class="delete-task">delete &#19872;</button>
               </form>
             {% endif %}
           </div>
       {% endfor %}
     {% else %}
-      <h2>no tasks to show &#128554;</h2>
+      <h2>no tasks to show &#1237;</h2>
     {% endif %}
   </div>
 {% endif %}

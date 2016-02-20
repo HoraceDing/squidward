@@ -10,10 +10,6 @@ def create(request):
             data = form.cleaned_data
             task = Task(owner=request.user, title=data['title'], description=data['description'])
             task.save()
-            task.collaborators.add(data['collaborator1'])
-            task.collaborators.add(data['collaborator2'])
-            task.collaborators.add(data['collaborator3'])
-            task.save()
             
     return HttpResponseRedirect('/')
                 
@@ -45,3 +41,4 @@ def say_whatsup(request):
     
 def swag(request):
     return HttpResponse("Swag beans")
+    

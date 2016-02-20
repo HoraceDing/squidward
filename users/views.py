@@ -67,3 +67,7 @@ def register(request):
             return render(request, 'index.html', {'login': loginForm, 'register': registrationForm, 'errors': 'Name too short'})
 
     return HttpResponseRedirect('/')
+    
+def logout(request):
+    poop_logout(request)
+    return HttpResponseRedirect('/')

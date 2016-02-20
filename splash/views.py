@@ -11,7 +11,8 @@ from .forms import RegisterForm
 # Create your views here.
 def index(request):
     if request.user.is_authenticated():
-        return render(request, 'index.html', {'user': request.user, 'new_task': newTaskForm})
+        tasks = Task.objects.filter(Q(owner=request.user) | Q(collaborators=request.user))
+        return render(request, 'index.html', {'user': request.user, 'new_task': newTaskForm, 'tasks': tasks})
     else:
         registerForm = RegisterForm()
         loginform = loginForm()
