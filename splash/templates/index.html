@@ -11,11 +11,24 @@
 
 <h2>Login</h2>
 
-<form action="/your-name/" method="post">
+<div id="login">
+  <form class="login" action="/user/login" method="POST">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
-</form>
+    <h3>sign in to see your tasks</h3>
+    {{login}}
+    <button type="submit"  class="log-in-submit">sign in </button>
+  </form>
+</div>
+
+<div id="register">
+  <form action="/user/register" method="POST" class="register">
+    {% csrf_token %}
+    <h2>create your account</h2>
+    {{register}}
+    <button class="sign-up-submit" type="submit">register</button>
+  </form>
+</div>
+
 
 
 
