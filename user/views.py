@@ -38,12 +38,12 @@ def register(request):
             data = form.cleaned_data
             if len(data['fl_name']) > 50:
                 registrationForm = RegisterForm()
-                loginform = loginform()
+                loginform = loginForm()
                 return render(request, 'index.html', {'login': loginForm, 'register': registrationForm, 'errors': 'Name too long'})
 
             if len(data['password']) > 50:
                 registrationForm = RegisterForm()
-                loginform = loginform()
+                loginform = loginForm()
                 return render(request, 'index.html', {'login': loginForm, 'register': registrationForm, 'errors': 'Password too long'})
 
             if data['password'] == data['password_confirmation']:
@@ -64,7 +64,7 @@ def register(request):
         else:
             registrationForm = RegisterForm()
             loginform  = loginForm()
-            return render(request, 'index.html', {'login': loginForm, 'register': registrationForm, 'errors': 'Name too short'})
+            return render(request, 'index.html', {'login': loginForm, 'register': registrationForm, 'errors': 'Name/e-mail/password too short'})
 
     return HttpResponseRedirect('/')
     

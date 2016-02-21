@@ -1,16 +1,151 @@
-<h1>God kill me now</h1>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<h1>CPSC113 Todo</h1>
 
-<!--<div>-->
-<!--    <form class="login" action="/user/login" method="POST">-->
-<!--      {{form}}-->
-<!--        <input type="submit"  class="log-in-submit">-->
-<!--    </form>-->
-<!--</div>-->
+<head>
+    <meta charset="utf-8">
+    <title>CPSC113 Todo</title>
+</head>
+
+<style>
+	*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  color: #384047;
+}
+
+form {
+  max-width: 300px;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background: #f4f7f8;
+  border-radius: 8px;
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  font-size: 16px;
+  height: auto;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+  background-color: #e8eeef;
+  color: #8a97a0;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 0 4px 8px 0;
+}
+
+select {
+  padding: 6px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+button {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+}
+
+fieldset {
+  margin-bottom: 30px;
+  border: none;
+}
+
+legend {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+label.light {
+  font-weight: 300;
+  display: inline;
+}
+
+.number {
+  background-color: #5fcf80;
+  color: #fff;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  line-height: 30px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+  border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 480px;
+  }
+
+}
+</style>
+
+
+
+<body>
+
 
 <div><hr></div>
+
+  <a href='/user/logout' class='logout'></a>
+
 {% if not user.is_authenticated %}
 
 <h2>Login</h2>
+
+{% if errors %}
+      <div style="color:red" class="validation-error">
+        {{errors}}
+      </div>
+    {% endif %}
 
 <div id="login">
   <form class="login" action="/user/login" method="POST">
@@ -28,14 +163,14 @@
     <h2>create your account</h2>
     {{register}}
     <button class="sign-up-submit" type="submit">register</button>
+
   </form>
 </div>
-<div style="color:red" class="validation-error">
-        {{errors}}
-</div>
+
+
 
 {% else %}
-
+<a href='/user/logout' class='logout'>Logout</a>
 <h1>Welcome, {{request.user.first_name}}</h1>
 
   <div id="new-task-form">
@@ -43,23 +178,22 @@
       {% csrf_token %}
       <h2>new task </h2>
       {{new_task}}
-      <button type="submit" class="create-task-submit">add task &#123404;</button>
+      <button type="submit" class="create-task-submit">add task ;</button>
     </form>
   </div>
 
 
-  <a href='/user/logout' class='logout'>Logout</a>
 
   <div>
     {% if tasks %}
       {% for task in tasks %}
         {% if task.isComplete %}
           <div class="tasks-list-item complete-task">
-          <h2><span class="task-title"><s>{{task.title}}</s> &#128588;</span></h2>
+          <h2><span class="task-title"><s>{{task.title}}</s> ;</span></h2>
           <h3><span class="task-description"><s><i>{{task.description}}</i></s></span></h3>
           <form action='/task/toggle/{{task.id}}' method="POST">
             {% csrf_token %}
-            <button type="submit" name="toggle-task" class="toggle-task">undo &#8634;</button>
+            <button type="submit" name="toggle-task" class="toggle-task">undo ;</button>
           </form>
         {% else %}
           <div class="tasks-list-item">
@@ -67,19 +201,22 @@
           <h3><span class="task-description"><i>{{task.description}}</i></span></h3>
           <form action='/task/toggle/{{task.id}}' method="POST">
             {% csrf_token %}
-            <button type="submit" name="toggle-task" class="toggle-task">complete &#12938;</button>
+            <button type="submit" name="toggle-task" class="toggle-task">complete ;</button>
           </form>
         {% endif %}
             {% if task.owner == user %}
               <form action='/task/delete/{{task.id}}' method="POST">
                 {% csrf_token %}
-                <button type="submit" name="delete-task" class="delete-task">delete &#19872;</button>
+                <button type="submit" name="delete-task" class="delete-task">delete ;</button>
               </form>
             {% endif %}
           </div>
       {% endfor %}
     {% else %}
-      <h2>no tasks to show &#1237;</h2>
+      <h2>no tasks to show ;</h2>
     {% endif %}
   </div>
 {% endif %}
+
+</body>
+</html>

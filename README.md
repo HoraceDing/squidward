@@ -30,3 +30,7 @@ python manage.py runserver 0.0.0.0:$PORT
 
 Then you can click "Preview" in the c9 interface to see your running application.
 Off to the races.
+
+ $ casperjs test test.js --includes=test -utils.js --base_url="http://cpsc113-todo-sample.herokuapp.com"
+ 
+  casperjs test test.js --includes=test-utils.js --base_url="https://squidward-aujerding.c9users.io/"
